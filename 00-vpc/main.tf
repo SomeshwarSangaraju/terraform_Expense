@@ -33,7 +33,7 @@ resource "aws_subnet" "public" {
   tags = merge( 
     local.vpc_tags,
     {
-        Name = "${local.common_suffix_name}-public"
+        Name = "${local.common_suffix_name}-public-${local.az_names[count.index]}"
     }
   )
 }
@@ -48,7 +48,7 @@ resource "aws_subnet" "private" {
   tags = merge( 
     local.vpc_tags,
     {
-        Name = "${local.common_suffix_name}-private"
+        Name = "${local.common_suffix_name}-private-${local.az_names[count.index]}"
     }
   )
 }
@@ -63,7 +63,7 @@ resource "aws_subnet" "database" {
   tags = merge( 
     local.vpc_tags,
     {
-        Name = "${local.common_suffix_name}-database"
+        Name = "${local.common_suffix_name}-database-${local.az_names[count.index]}"
     }
   )
 }
@@ -121,7 +121,7 @@ resource "aws_route" "database" {
 
 resource "aws_route_table_association" "public" {
   count = length(var.public_subnet_cidrs)
-  subnet_id      = aws_subnet.public.id[count.index].id
+  subnet_id      = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.public.id
 }
 
@@ -159,7 +159,7 @@ resource "aws_nat_gateway" "main" {
   )
   # To ensure proper ordering, it is recommended to add an explicit dependency
   # on the Internet Gateway for the VPC.
-  depends_on = [aws_internet_gateway.this.id]
+  depends_on = [aws_internet_gateway.this]
 }
 
 
