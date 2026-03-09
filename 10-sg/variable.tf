@@ -9,12 +9,11 @@ variable "environment" {
 variable "sg_names"{
     default = [
         #database
-        mongodb, redis, mysql, rabbitmq,
+        "mongodb", "redis", "mysql", "rabbitmq",
         # backend
-        catalogue, user, cart, shipping, payment,
+        "catalogue", "user", "cart", "shipping", "payment",
         #frontend
-        frontend,
-
-        bastion, fronend-alb, backend-alb
+        "frontend",
+        "bastion", "fronend_alb", "backend_alb"
     ]
 }

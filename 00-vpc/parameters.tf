@@ -3,3 +3,4 @@ resource "aws_ssm_parameter" "vpc" {
   type  = "String"
   value = aws_vpc.main.id
 }
+
