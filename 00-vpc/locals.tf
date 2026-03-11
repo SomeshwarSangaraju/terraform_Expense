@@ -7,7 +7,7 @@ locals{
     az_names = slice(data.aws_availability_zones.available_zones.names, 0, 2)
 
     vpc_tags={
-        Project = "roboshop"
+        Project = "expense"
         Environment = "dev"
     }
     common_suffix_name = "${var.project}-${var.environment}"

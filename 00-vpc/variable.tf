@@ -8,7 +8,7 @@ variable "vpc_tags"{
 }
 
 variable "project"{
-    default = "roboshop"
+    default = "expense"
 }
 
 variable "environment"{
