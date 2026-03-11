@@ -4,10 +4,16 @@ resource "aws_ssm_parameter" "vpc" {
   value = aws_vpc.main.id
 }
 
+# resource "aws_ssm_parameter" "public_subnet_ids" {
+#   name  = "/${var.project}/${var.environment}/public_subnet_ids"
+#   type  = "StringList"
+#   value = join("," ,local.public_subnet_ids)
+# }
+
 resource "aws_ssm_parameter" "public_subnet_ids" {
   name  = "/${var.project}/${var.environment}/public_subnet_ids"
   type  = "StringList"
-  value = join("," ,local.public_subnet_ids)
+  value = join(",", local.public_subnet_ids)
 }
 
 resource "aws_ssm_parameter" "private_subnet_ids" {
