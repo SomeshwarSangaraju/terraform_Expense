@@ -12,7 +12,7 @@ sudo yum -y install terraform
 # creating databases
 cd /home/ec2-user
 git clone https://github.com/SomeshwarSangaraju/expense_dev_infra.git
-chown ec2-user:ec2-user -R expense-dev-infra
-cd expense-dev-infra/40-databases
+chown ec2-user:ec2-user -R expense_dev_infra
+cd expense_dev_infra/40-databases
 terraform init
 terraform apply -auto-approve
