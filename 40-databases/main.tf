@@ -7,7 +7,7 @@ resource "aws_instance" "mysql" {
   tags = merge(
     local.common_tags,
     {
-        Name = "${local.common_suffix_name}"
+        Name = "${local.common_suffix_name}-mysql"
     }
   )
 }
