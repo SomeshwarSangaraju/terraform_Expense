@@ -34,6 +34,15 @@ resource "aws_security_group_rule" "bastion_frontend" {
   to_port           = 22
 }
 
+resource "aws_security_group_rule" "public_frontend_alb" {
+  type              = "ingress"
+  security_group_id = local.frontend_alb_sg_id
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+
+}
 
 
 
