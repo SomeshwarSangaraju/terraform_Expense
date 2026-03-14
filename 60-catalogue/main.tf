@@ -12,6 +12,7 @@ resource "aws_instance" "catalogue" {
   )
 }
 
+# connect to instance using remote-exec provisioners through terraform data
 resource "terraform_data" "catalogue" {
   triggers_replace = [
     aws_instance.catalogue.id
@@ -38,6 +39,7 @@ resource "terraform_data" "catalogue" {
   }
 }
 
+# stop the instance to take ami
 resource "aws_ec2_instance_state" "catalogue" {
   instance_id = aws_instance.catalogue.id
   state       = "stopped"
@@ -55,5 +57,4 @@ resource "aws_ami_from_instance" "catalogue" {
         Name = "${local.common_suffix_name}-catalogue-ami"
     }
   )
-
 }
