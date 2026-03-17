@@ -131,7 +131,7 @@ resource "aws_autoscaling_group" "frontend" {
     id      = aws_launch_template.frontend.id
     version = aws_launch_template.frontend.latest_version
   }
-  vpc_zone_identifier       = local.private_subnet_id
+  vpc_zone_identifier       = [local.private_subnet_ids]
   target_group_arns = [aws_lb_target_group.frontend.arn]
 
 
